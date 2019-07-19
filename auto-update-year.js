@@ -45,7 +45,11 @@ function detectExistingClasses(classes, year){
 function addYearFull(y, ys, c){
   if(c){
     for (var i in ys) {
-      document.getElementsByClassName(y)[i].innerHTML = copy+currentYear;
+      if (y=="au-year-full-cp") {
+        document.getElementsByClassName(y)[i].innerHTML = copy+currentYear;
+      }else{
+        document.getElementsByClassName(y)[i].innerHTML = copy+" "+currentYear;
+      }
     }
   }else{
     for (var i in ys) {
@@ -58,7 +62,11 @@ function addYearShort(y, ys, c){
   var currentShortYear = currentYear.substr(-2);
   if(c){
     for (var i in ys) {
-      document.getElementsByClassName(y)[i].innerHTML = copy+currentShortYear;
+      if (y=="au-year-full-cp") {
+        document.getElementsByClassName(y)[i].innerHTML = copy+currentShortYear;
+      } else {
+        document.getElementsByClassName(y)[i].innerHTML = copy+" "+currentShortYear;
+      }
     }
   }else{
     for (var i in ys) {
