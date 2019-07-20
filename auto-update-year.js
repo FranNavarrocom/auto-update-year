@@ -1,9 +1,11 @@
-var currentDate = new Date;
-var currentYear = (currentDate.getFullYear()).toString();
-var extensionName = "Auto-Update-Year";
-var extensionVersion = "v1.0.1";
-var copy = "&copy;";
-var htmlClasses = [
+var cd = new Date;
+var cy = (cd.getFullYear()).toString();
+var cp = "&copy;";
+var app = [
+  "Auto-Update-Year",
+  "v1.0.1"
+];
+var hc = [
   "au-year-full",
   "au-year-short",
   "au-year-full-cp",
@@ -12,74 +14,57 @@ var htmlClasses = [
   "au-year-short-sp"
 ];
 
-function detectExistingClasses(classes, year){
-  for (var i in classes) {
-    var o = document.getElementsByClassName(classes[i]);
+function dec(cls){
+  for (var i in cls) {
+    var o = document.getElementsByClassName(cls[i]);
     if(o.length > 0){
-      switch(classes[i]) {
-      case "au-year-full":
-        addYearFull(classes[i], o, false);
+      ae(cls[i], o);
+    }
+  }
+}
+
+function ae(e, array){
+  for (var n in array) {
+    var h = document.getElementsByClassName(e)[n];
+    var scy = cy.substr(-2);
+    switch (e) {
+      case hc[0]:
+        h.innerHTML = cy;
         break;
-      case "au-year-short":
-        addYearShort(classes[i], o, false);
+      case hc[1]:
+        h.innerHTML = cp+cy;
         break;
-      case "au-year-full-cp":
-        addYearFull(classes[i], o, true);
+      case hc[2]:
+        h.innerHTML = scy;
         break;
-      case "au-year-short-cp":
-        addYearShort(classes[i], o, true);
+      case hc[3]:
+        h.innerHTML = cp+scy;
         break;
-      case "au-year-full-sp":
-        addYearFull(classes[i], o, true);
+      case hc[4]:
+        h.innerHTML = cp+" "+cy;
         break;
-      case "au-year-short-sp":
-        addYearShort(classes[i], o, true);
+      case hc[5]:
+        h.innerHTML = cp+" "+scy;
         break;
       default:
-        console.error("Please, use a valid name for '"+extensionName+"' classes.");
-      }
+      console.error("Ops! Houston we have a problem! "+app[0]+" "+app[1]+" is not working properly :-(");
     }
   }
 }
 
-function addYearFull(y, ys, c){
-  if(c){
-    for (var i in ys) {
-      document.getElementsByClassName(y)[i].innerHTML = copy+currentYear;
-    }
-  }else{
-    for (var i in ys) {
-      document.getElementsByClassName(y)[i].innerHTML = currentYear;
-    }
-  }
-}
-
-function addYearShort(y, ys, c){
-  var currentShortYear = currentYear.substr(-2);
-  if(c){
-    for (var i in ys) {
-      document.getElementsByClassName(y)[i].innerHTML = copy+currentShortYear;
-    }
-  }else{
-    for (var i in ys) {
-      document.getElementsByClassName(y)[i].innerHTML = currentShortYear;
-    }
-  }
-}
-
-function render(){
-  detectExistingClasses(htmlClasses);
+function r(){
+  dec(hc);
 }
 
 try {
   window.onload = function() {
     try {
-      render();
-      console.log(extensionName+" "+extensionVersion +" works! :-)");
+      r();
+      console.log(app[0]+" "+app[1] +" works! :-)");
     } catch (e) {
-      console.error(e + " - "+extensionName+" "+extensionVersion);
+      console.error(e + " - "+app[0]+" "+app[1]);
     }
   };
 }catch(e) {
-  console.error(e + " - "+extensionName+" "+extensionVersion);
+  console.error(e + " - "+app[0]+" "+app[1]);
 }
