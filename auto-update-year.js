@@ -19,6 +19,8 @@ function dec(cls){
     var o = document.getElementsByClassName(cls[i]);
     if(o.length > 0){
       ae(cls[i], o);
+    }else {
+      console.warn(app[0]+" "+app[1]+" works correctly but any class was used in your HTML.");
     }
   }
 }
