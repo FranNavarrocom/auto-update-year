@@ -13,12 +13,19 @@ var hc = [
   "au-year-full-sp",
   "au-year-short-sp"
 ];
+var cns =[
+  app[0]+" "+app[1]+" works but any valid class was found. Please, use a valid class.",
+  "Ops! Houston we have a problem! "+app[0]+" "+app[1]+" is not working properly :-(",
+  app[0]+" "+app[1] +" works! :-)",
+];
 
 function dec(cls){
   for (var i in cls) {
     var o = document.getElementsByClassName(cls[i]);
     if(o.length > 0){
       ae(cls[i], o);
+    }else {
+      console.warn(cns[0]);
     }
   }
 }
@@ -47,7 +54,7 @@ function ae(e, array){
         h.innerHTML = cp+" "+scy;
         break;
       default:
-      console.error("Ops! Houston we have a problem! "+app[0]+" "+app[1]+" is not working properly :-(");
+      console.error(cns[1]);
     }
   }
 }
@@ -60,11 +67,11 @@ try {
   window.onload = function() {
     try {
       r();
-      console.log(app[0]+" "+app[1] +" works! :-)");
+      console.log(cns[2]);
     } catch (e) {
-      console.error(e + " - "+app[0]+" "+app[1]);
+      console.error(cns[1]+" More details: "+e);
     }
   };
 }catch(e) {
-  console.error(e + " - "+app[0]+" "+app[1]);
+  console.error(cns[1]+" More details: "+e);
 }
